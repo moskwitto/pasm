@@ -1,0 +1,13 @@
+mov
+add
+dw
+wait
+inc
+dec
+push 
+resb
+xor
+
+mov 0xfcc
+mov [0xfcc+y]
+inc X

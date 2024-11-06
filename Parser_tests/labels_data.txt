@@ -1,0 +1,5 @@
+loop:  
+       mov [VIA_PORTB], a    
+       inc a
+       jmp loop   
+       

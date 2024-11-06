@@ -1,0 +1,5 @@
+portb=porta +90
+90+4
+0xffc+x
+[0h678d+3]
+aa*b-(c*686)

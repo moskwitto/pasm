@@ -1,0 +1,4 @@
+section text origin 0x8000 
+section rodata origin 0x8002
+section vectors origin 0xfffc 
+section rwdata origin 0x8123 
