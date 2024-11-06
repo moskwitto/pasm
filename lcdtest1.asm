@@ -28,7 +28,7 @@ start:                         ; Another way to define variables is by a label: 
        mov a, 0b00111000
        mov [VIA_PORTB], a      ; 
 
-       mov a, 0b01000000
+       mov a, 0b10000000
        mov [VIA_PORTA], a      ; set E=1
        mov a, 0b00000000
        mov [VIA_PORTA], a      ; set E=0
@@ -41,7 +41,7 @@ start:                         ; Another way to define variables is by a label: 
        mov a, 0b00001111
        mov [VIA_PORTB], a      ; display on, cursor off
 
-       mov a, 0b01000000
+       mov a, 0b10000000
        mov [VIA_PORTA], a      ; set E=1
        mov a, 0b00000000
        mov [VIA_PORTA], a      ; set E=0
@@ -49,10 +49,10 @@ start:                         ; Another way to define variables is by a label: 
        mov a, 0b00100000
        mov [VIA_PORTA], a      ; set RW, E = 0 ; RS = 1 (sending data)
 
-       mov a, 0b01001010
+       mov a, 0b10001010
        mov [VIA_PORTB], a      ; Your favourite letter
 
-       mov a, 0b01100000
+       mov a, 0b10100000
        mov [VIA_PORTA], a      ; set E=1
        mov a, 0b00100000
        mov [VIA_PORTA], a      ; set E=0
