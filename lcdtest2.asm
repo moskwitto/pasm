@@ -23,38 +23,35 @@ start:                         ; Another way to define variables is by a label: 
        mov [VIA_DDRA],  a      ; Set PA5, PA6, PA7 pins of PORTA to output.
 
 
-       mov a, 0
-       mov [VIA_PORTA], a      ; set RW, E, RS = 0
+    
        mov a, 0b00111000
-       mov [VIA_PORTB], a      ; 
-
-       mov a, 0b01000000
-       mov [VIA_PORTA], a      ; set E=1
-       mov a, 0b00000000
-       mov [VIA_PORTA], a      ; set E=0
+       call lcd_command
 
 
 
-
-       mov a, 0
-       mov [VIA_PORTA], a      ; set RW, E, RS = 0
+ 
        mov a, 0b00001111
-       mov [VIA_PORTB], a      ; display on, cursor off
-
-       mov a, 0b01000000
-       mov [VIA_PORTA], a      ; set E=1
-       mov a, 0b00000000
-       mov [VIA_PORTA], a      ; set E=1
+      call lcd_command
 
 
 
-       mov a, 0b01001010   ; put the input char into a
+       mov a, 0b01000101; put the input char into a
        call print_char     ; call the function
 
-       mov a, 0b01001011   ; put the input char into a
+       mov a, 0b01010010   ; put the input char into a
        call print_char     ; call the function
 
-       mov a, 0b01001100   ; put the input char into a
+       mov a, 0b01000100  ; put the input char into a
+       call print_char     ; call the function
+
+       mov a, 0b01000100  ; put the input char into a
+       call print_char     ; call the function
+
+       mov a, 0b01001101  ; put the input char into a
+       call print_char     ; call the function
+
+
+       mov a, 0b01000100  ; put the input char into a
        call print_char     ; call the function
        
 loop:
@@ -71,6 +68,21 @@ print_char:
        mov a, 0b00100000
        mov [VIA_PORTA], a      ; set RS = 1, RW = E =0
        ret
+
+lcd_command:
+
+       mov [VIA_PORTB], a      ; 
+       mov a, 0
+       mov [VIA_PORTA], a      ; set RW, E, RS = 0
+
+    
+
+       mov a, 0b10000000
+       mov [VIA_PORTA], a      ; set E=1
+       mov a, 0b00000000
+       mov [VIA_PORTA], a      ; set E=0
+       ret
+
 
 section data  origin 0x4100
 var1:  db  0xff                ; We just put 0xff into address 0x8100, to be read in at the start.
