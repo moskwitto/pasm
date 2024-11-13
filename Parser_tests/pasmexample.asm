@@ -5,18 +5,137 @@
 
 VIA_BASE = 0x8000  ; Variables can be defined that way: name, equal sign, expression.
 VIA_PORTB = VIA_BASE
+VIA_PORTA = VIA_BASE + 1
 VIA_DDRB = VIA_BASE + 2  ; The expression can contain numbers, variables and operations like plus or times.
-                         ; Numbers can be input in decimal (1234), hexadecimal (0x4002), or binary (0b10010101) format.
+VIA_DDRA = VIA_BASE + 3  ; Numbers can be input in decimal (1234), hexadecimal (0x4002), or binary (0b10010101) format.
 
 section text origin 0x4000     ; The section directive tell the compiler, where to put the machine code or data that comes next.
                                ; Traditionally the section where your code goes is called "text"
 
 start:                         ; Another way to define variables is by a label: it is a name followed by a colon.
-       mov a, [var1]           ; var1 is a variable that is defined later, in the data segment
+       mov a, 0xff           ; var1 is a variable that is defined later, in the data segment
        mov [VIA_DDRB],  a      ; Set all pins of PORTB to output.
-loop:  mov [VIA_PORTB], a      ; The label can be on the same line as the instruction (before it).
-       inc a
-       jmp loop                ; Create an infinite loop.
+       mov a, 0b11100000
+       mov [VIA_DDRA],  a      ; Set PA5, PA6, PA7 pins of PORTA to output.
+
+       mov a, 0
+       mov [VIA_PORTA], a      ; set RW, E, RS = 0
+       mov a, 0b00001100
+       mov [VIA_PORTB], a      ; display on, cursor off
+
+       mov a, 0b10000000
+       mov [VIA_PORTA], a      ; set E=1
+       mov a, 0b00000000
+       mov [VIA_PORTA], a      ; set E=0
+
+       mov a, 0b00100000
+       mov [VIA_PORTA], a      ; set RW, E = 0 ; RS = 1 (sending data)
+ 
+
+       mov a, 0b01001000       ; H
+       mov [VIA_PORTB], a      ; Your favourite letter
+       mov a, 0b10100000
+       mov [VIA_PORTA], a      ; set E=1
+       mov a, 0b00100000
+       mov [VIA_PORTA], a      ; set E=0
+
+       mov a, 0b01000101       ; E
+       mov [VIA_PORTB], a
+       mov a, 0b10100000
+       mov [VIA_PORTA], a      ; set E=1
+       mov a, 0b00100000
+       mov [VIA_PORTA], a      ; set E=0
+
+       mov a, 0b01001100       ; L
+       mov [VIA_PORTB], a
+       mov a, 0b10100000
+       mov [VIA_PORTA], a      ; set E=1
+       mov a, 0b00100000
+       mov [VIA_PORTA], a      ; set E=0
+
+       mov a, 0b01001100       ; L
+       mov [VIA_PORTB], a
+       mov a, 0b10100000
+       mov [VIA_PORTA], a      ; set E=1
+       mov a, 0b00100000
+       mov [VIA_PORTA], a      ; set E=0
+
+       mov a, 0b01001111       ; O
+       mov [VIA_PORTB], a
+       mov a, 0b10100000
+       mov [VIA_PORTA], a      ; set E=1
+       mov a, 0b00100000
+       mov [VIA_PORTA], a      ; set E=0
+
+       mov a, 0b00100000       ; space        
+       mov [VIA_PORTB], a
+       mov a, 0b10100000
+       mov [VIA_PORTA], a      ; set E=1
+       mov a, 0b00100000
+       mov [VIA_PORTA], a      ; set E=0
+
+       mov a, 0b01010111       ; W       
+       mov [VIA_PORTB], a
+       mov a, 0b10100000
+       mov [VIA_PORTA], a      ; set E=1
+       mov a, 0b00100000
+       mov [VIA_PORTA], a      ; set E=0
+
+       mov a, 0b01001111       ; O
+       mov [VIA_PORTB], a
+       mov a, 0b10100000
+       mov [VIA_PORTA], a      ; set E=1
+       mov a, 0b00100000
+       mov [VIA_PORTA], a      ; set E=0
+
+       mov a, 0b01010010       ; R       
+       mov [VIA_PORTB], a
+       mov a, 0b10100000
+       mov [VIA_PORTA], a      ; set E=1
+       mov a, 0b00100000
+       mov [VIA_PORTA], a      ; set E=0
+
+       mov a, 0b01001100       ; L
+       mov [VIA_PORTB], a
+       mov a, 0b10100000
+       mov [VIA_PORTA], a      ; set E=1
+       mov a, 0b00100000
+       mov [VIA_PORTA], a      ; set E=0
+
+       mov a, 0b01000100       ; D       
+       mov [VIA_PORTB], a
+
+       mov a, 0b10100000
+       mov [VIA_PORTA], a      ; set E=1
+       mov a, 0b00100000
+       mov [VIA_PORTA], a      ; set E=0
+
+       mov a, 0b00100000       ; space        
+       mov [VIA_PORTB], a
+       mov a, 0b10100000
+       mov [VIA_PORTA], a      ; set E=1
+       mov a, 0b00100000
+       mov [VIA_PORTA], a      ; set E=0
+
+       mov a, 0b00111100       ; <      
+       mov [VIA_PORTB], a
+
+       mov a, 0b10100000
+       mov [VIA_PORTA], a      ; set E=1
+       mov a, 0b00100000
+       mov [VIA_PORTA], a      ; set E=0
+
+       mov a, 0b00110011       ; 3
+       mov [VIA_PORTB], a
+
+       mov a, 0b10100000
+       mov [VIA_PORTA], a      ; set E=1
+       mov a, 0b00100000
+       mov [VIA_PORTA], a      ; set E=0
+
+
+loop:
+       jmp loop                ; Create an infinite loop.Create an infinite loop.
 
 section data  origin 0x4100
 var1:  db  0xff                ; We just put 0xff into address 0x8100, to be read in at the start.
