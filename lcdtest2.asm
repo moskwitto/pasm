@@ -22,30 +22,26 @@ start:                         ; Another way to define variables is by a label: 
        mov a, 0b11100000
        mov [VIA_DDRA],  a      ; Set PA5, PA6, PA7 pins of PORTA to output.
 
-
        mov a, 0
        mov [VIA_PORTA], a      ; set RW, E, RS = 0
-       mov a, 0b00111000
-       mov [VIA_PORTB], a      ; 
+       mov a, 0b00001100
+       mov [VIA_PORTB], a      ; display on, cursor off
 
-       mov a, 0b01000000
+       mov a, 0b10000000
        mov [VIA_PORTA], a      ; set E=1
        mov a, 0b00000000
        mov [VIA_PORTA], a      ; set E=0
 
+       mov a, 0b00100000
+       mov [VIA_PORTA], a      ; set RW, E = 0 ; RS = 1 (sending data)
 
+       mov a, 0b01001010
+       mov [VIA_PORTB], a      ; Your favourite letter
 
-
-       mov a, 0
-       mov [VIA_PORTA], a      ; set RW, E, RS = 0
-       mov a, 0b00001111
-       mov [VIA_PORTB], a      ; display on, cursor off
-
-       mov a, 0b01000000
+       mov a, 0b10100000
        mov [VIA_PORTA], a      ; set E=1
-       mov a, 0b00000000
-       mov [VIA_PORTA], a      ; set E=1
-
+       mov a, 0b00100000
+       mov [VIA_PORTA], a      ; set E=0
 
 
        mov a, 0b01001010   ; put the input char into a
