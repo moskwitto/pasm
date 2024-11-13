@@ -62,7 +62,7 @@ print_char:
        mov [VIA_PORTB], a      ; Your favourite letter
        mov a, 0b00100000
        mov [VIA_PORTA], a      ; set RS = 1, RW = E =0
-       mov a, 0b01100000
+       mov a, 0b10100000
        mov [VIA_PORTA], a      ; set RS = 1, RW = 0, E=1
        mov a, 0b00100000
        mov [VIA_PORTA], a      ; set RS = 1, RW = E =0
