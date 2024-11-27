@@ -1,6 +1,7 @@
 Compiling on windows:
 
 cd Desktop\pasm23
+
 pasm23.exe < Parser_tests\file.asm
 
 ---
