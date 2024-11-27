@@ -1,5 +1,7 @@
 Compiling:
 
-pasm23.exe < Parsertests\file.asm
+cd Desktop
+cd pasm23
+pasm23.exe < Parser_tests\file.asm
 
 
