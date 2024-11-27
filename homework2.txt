@@ -1,0 +1,24 @@
+
+Homework2: In groups
+
+-1.  Install putty (OR Arduino IDE) on your laptop.
+
+0. Split the program from last week into
+   two half:  one called lcdlib.asm contains the
+   LCD printig subroutines, the other: main.asm
+   contains the main program.
+
+1. Write a subroutine that prints a number (1 byte) in hex to the LCD.
+   The input is in the A register.
+
+2. Same as 1. but print it in binary.
+
+3. (more difficult) same as 1. but in decimal.
+
+4. Write a subroutine that just waits for some time.
+   It should wait approximately   input* 1000 clock cycles.
+   The input is in the A regiszter.  (Remember, in high speed
+   mode the clock ticks at about 30kHz.)
+
+5. Write a program that may use the above subroutines and
+   prints a number that increases by 3 in every second.
